@@ -1,0 +1,5 @@
+데스크탑
+Internet Explorer 5.5+, Safari 3+, Google Chrome 4+, Firefox 3+, Opera 10.61+
+
+모바일
+iPhone Safari, iPad Safari, Android WebKit, WebOs WebKit 등을 지원

@@ -1,0 +1,19 @@
+Request Headers
+  Accept-Encoding:gzip, deflate, sdch
+  Accept-Language:ko-KR,ko;q=0.8,en-US;q=0.6,en;q=0.4
+  Cache-Control:no-cache
+  Connection:Upgrade
+  Host:127.0.0.1:8080
+  Origin:null
+  Pragma:no-cache
+  Sec-WebSocket-Extensions:permessage-deflate; client_max_window_bits
+  Sec-WebSocket-Key:z6I5tcz7adHhCBmUZvM1Tw==
+  Sec-WebSocket-Version:13
+  Upgrade:websocket
+  User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36
+
+Response Headers
+  Connection:Upgrade
+  Origin:null
+  Sec-WebSocket-Accept:d1aoMfs/CPGgzC22si69pL3IM2M=
+  Upgrade:websocket

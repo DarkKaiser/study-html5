@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0043)http://helloworld.naver.com/helloworld/1336 -->
+<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="Generator" content="XpressEngine 1.4.5.10">
+    <meta name="module" content="textyle">
+    <meta name="module_skin" content="devblog2">
+    <meta http-equiv="imagetoolbar" content="no">
+    <title>HelloWorld »  WebSocket과 Socket.io</title>
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/default.css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/button.css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/jquery-ui.css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/style.css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/style(1).css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/pagination.css" type="text/css" charset="UTF-8" media="all">
+    <link rel="stylesheet" href="./WebSocket과 Socket.io_files/textyle.css" type="text/css" charset="UTF-8" media="all">
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/jquery.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/x.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/common.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/js_app.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/xml_handler.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/xml_js_filter.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/textyle_service.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/jquery.cookie.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/autoresize.jquery.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/socialxe.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/category.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/content_widget.js"></script>
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="http://helloworld.naver.com/helloworld/textyle/rss">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="http://helloworld.naver.com/helloworld/textyle/atom">
+    <link rel="alternate" type="application/rss+xml" title="Site RSS" href="http://helloworld.naver.com/index.php?module=rss&act=rss&vid=helloworld">
+    <link rel="alternate" type="application/atom+xml" title="Site Atom" href="http://helloworld.naver.com/index.php?module=rss&act=atom&vid=helloworld">
+
+    <script type="text/javascript">//<![CDATA[
+        var current_url = "http://helloworld.naver.com/?mid=textyle&document_srl=1336&vid=helloworld";
+        var request_uri = "http://helloworld.naver.com/";
+var xeVid = "helloworld";        var current_mid = "textyle";
+        var waiting_message = "서버에 요청중입니다. 잠시만 기다려주세요.";
+        var ssl_actions = new Array();
+        var default_url = "http://helloworld.naver.com/";
+                        
+    //]]></script>
+
+    
+
+
+<link rel="shortcut icon" href="http://helloworld.naver.com/files/attach/textyle/favicon/061/favicon.ico?rnd=1325122517">
+<meta name="keywords" content="개발자Tip, WebSocket, Socket.io">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://helloworld.naver.com/index.php?mid=textyle&act=api&vid=helloworld">
+<style type="text/css"> .xe_content { font-size:13px; }; </style>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/plugins_v1.js"></script>
+<meta property="me2:post_body" content="&quot;WebSocket과 Socket.io&quot;:http://helloworld.naver.com/helloworld/1336 ">
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shCore.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushJava.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushPython.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushSql.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushVb.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushXml.js"></script>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/shBrushPlain.js"></script>
+<link href="./WebSocket과 Socket.io_files/shCore.css" rel="stylesheet" type="text/css">
+<link href="./WebSocket과 Socket.io_files/shThemeEclipse.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">SyntaxHighlighter.all()</script>
+</head>
+<body data-rendering="true"><iframe id="twttrHubFrame" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" name="twttrHubFrame" style="position: absolute; top: -9999em; width: 10px; height: 10px; " src="./WebSocket과 Socket.io_files/hub.1326407570.htm"></iframe>
+    
+    <div id="xe" class="fixed">
+	<div id="container" class="ce">
+		<div id="header">
+			<a href="http://helloworld.naver.com/helloworld/1336#content" class="skipToContent">Skip to content</a>
+			<h1><a href="http://helloworld.naver.com/helloworld" class="sp_txt">HelloWorld</a></h1>
+			<p class="sp_txt blogInfo">NHN 개발자 블로그</p>
+			<hr>
+<!--			<form action="http://helloworld.naver.com/" method="get" class="search">
+				<input name="vid" type="hidden" value="helloworld" />
+				<input name="mid" type="hidden" value="textyle" />
+				<input name="act" type="hidden" value="dispTextyle" />
+				<input name="search_target" type="hidden" value="title_content" />
+				<fieldset>
+					<legend>검색</legend>
+					<input name="search_keyword" type="text" class="inputText" value="" accesskey="S" title="SEARCH" />
+					<input type="image" src="/files/attach/textyle/061/img/buttonSearch.gif" alt="검색" class="buttonSearch" />
+				</fieldset>
+			</form>
+			<hr />
+			<div class="extension">
+				<ul>
+					<li><a href="/index.php?mid=textyle&amp;act=dispTextyleProfile&amp;vid=helloworld">Profile</a></li>
+					<li><a href="/index.php?mid=textyle&amp;act=dispTextyleGuestbook&amp;vid=helloworld">GuestBook</a></li>
+					<li><a href="/index.php?mid=textyle&amp;act=dispTextyleTag&amp;vid=helloworld">Tag</a></li>
+									</ul>
+			</div>-->
+			<!--<a href="/index.php?mid=textyle&amp;act=dispTextyleToolLogin&amp;vid=helloworld" class="admin" accesskey="A">Admin</a>-->
+		</div>
+
+		<hr>
+		<div id="body">
+			<div id="content">
+									                        <h2 class="postTitle"><a href="http://helloworld.naver.com/index.php?mid=textyle&document_srl=1336&vid=helloworld">WebSocket과 Socket.io</a> <span class="category">개발자Tip</span></h2>
+                        <p class="postMeta"><span class="yymmdd">2011.12.22</span> <span class="hhmm">14:07</span> <!--<span class="author member_4">Helloworld</span> <a href="/index.php?mid=textyle&amp;document_srl=1336&amp;vid=helloworld&amp;act=dispTextyleToolPostManageWrite" class="editPost">Edit</a>--></p>
+
+<!-- SNS Buttons-->
+<!-- me2day -->
+<span class="box_sns" style="margin-right:5px;">
+<span style="margin-right:14px;margin-bottom:2px;">
+<me2:metoo profile_images="off" color="dark" layout="small" pingback="checked" href="http://helloworld.naver.com/helloworld/1336" plugin_key="EpRyj-DCRKmSJkRSB1-vfw"></me2:metoo><span class="me2day_me2box" id="buttonWrapperUniq_46442625555209816" style="position:relative; display: inline-block; font-size:0"><iframe class="buttonFrame" name="buttonFrameUniq_46442625555209816" id="buttonFrameUniq_46442625555209816" src="./WebSocket과 Socket.io_files/button.htm" allowtransparency="true" title="data frame" width="48" height="20" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="">&amp;lt;p&amp;gt;Your browser does not support i.&amp;lt;/p&amp;gt;</iframe></span></span>
+<!-- twitter -->
+<iframe allowtransparency="true" frameborder="0" scrolling="no" src="./WebSocket과 Socket.io_files/tweet_button.1326407570.htm" class="twitter-share-button twitter-count-horizontal" style="height: 20px; width: 110px; " title="Twitter Tweet Button"></iframe>
+<script type="text/javascript" src="./WebSocket과 Socket.io_files/widgets.js"></script>
+<!-- fb -->
+<iframe src="./WebSocket과 Socket.io_files/like.htm" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowtransparency="true"></iframe>
+</span>
+<!-- /SNS Buttons-->
+                       <div class="textyleContent xe_content">
+                                                        <!--BeforeDocument(1336,4)--><div class="document_1336_4 xe_content"><div class="xe_content"><p style="margin-left: 46pt"><span style="color: rgb(125, 125, 125);  ">NHN Ajax UI4팀 심상민</span><span style="font-size: 13px; ">&nbsp;</span></p><p style="margin-left: 46pt"><span style="color:#272425;  ">웹 페이지의 한계에서 벗어나 실시간으로 상호작용하는 웹 서비스를 만드는 표준 기술인 WebSocket. 그리고 다양한 방식의 실시간 웹 기술을 손쉽게 사용할 수 있는 Socket.io. 이 두 기술이 무엇인지 설명하고 어떻게 사용하는지 간단한 예제로 알아보겠습니다.
+</span></p><li><h2>웹 소켓(Web Socket)이 있기까지
+</h2><p><span>1989년 CERN(<a href="http://public.web.cern.ch/">http://public.web.cern.ch</a>)에서 웹의 역사가 시작되었을 때에는 사용자와의 상호작용은 웹 개발에서 큰 부분을 차지하지 않았다. 그러나 초창기에 연구기관에서 사용하던 웹은 점점 더 일상생활에 파고들었고, PC용 응용 프로그램(Native Application)을 대체할 수 있는 정도까지 되었다. 지금까지의 PC 환경이 이렇게 변화한 것처럼 모바일 환경에서도 앞으로 마찬가지로 변화할 것으로 보인다.
+</span></p><p><span>전형적인 브라우저 렌더링 방식은 HTTP 요청(HTTP Request)에 대한 HTTP 응답(HTTP Response)을 받아서 브라우저의 화면을 깨끗하게 지우고 받은 내용을 새로 표시하는 방식이다. 내용을 지우고 다시 그리면 브라우저의 깜빡임이 생기게 된다. 이러한 깜빡임 없이 원하는 부분만 다시 그리며 실시간으로 사용자와 상호작용하는 방식이 나타나고 사용자와 상호작용하는 웹 서비스를 선호하는 사용자가 증가하면서 RIA(Rich Internet Application) 기술의 발달이 촉진되었다.
+</span></p><p><span>상호작용하는 웹 서비스를 위해 숨겨진 프레임(Hidden Frame)을 이용한 방법이나 Long Polling, Stream 등 다양한 방법을 사용했다. 그러나 이러한 방식은 브라우저가 HTTP 요청를 보내고 웹 서버가 이 요청에 대한 HTTP 응답를 보내는 단방향 메세지 교환 '규칙'을 변경하지 않고 구현한 방식이다. 그렇기 때문에 상호작용하는 웹 페이지를 복잡하고 어려운 코드로 구현해야 했다.
+</span></p><p><span>보다 쉽게 상호작용하는 웹 페이지를 만들려면 브라우저와 웹 서버 사이에 더 자유로운 양방향 메시지 송수신(bi-directional full-duplex communication)이 필요하다. 그래서 HTML5 표준안의 일부로 WebSocket API(이후 WebSocket)가 등장했다.
+</span></p><p><span>
+					<img src="./WebSocket과 Socket.io_files/122111_0950_WebSocketSo1.png" alt="122111_0950_WebSocketSo1.png" title="122111_0950_WebSocketSo1.png" class="iePngFix" style="" rel="xe_gallery">
+				</span></p><p><span><strong>그림 1 WebSocket과 일반적인 Ajax Long Polling 방식 비교(이미지 출처: <a href="http://java.sys-con.com/node/1315473">http://java.sys-con.com/node/1315473</a>)
+</strong></span></p><p><span>WebSocket은 그 이름에서 알 수 있듯이 소켓을 이용하여 자유롭게 데이터를 주고 받을 수 있다. 즉 기존의 요청-응답 관계 방식보다 더 쉽게 데이터를 교환할 수 있다.
+</span></p></li><li><h2>WebSocket 프로토콜
+</h2><p><span>표준 WebSocket의 API는 W3C에서 관장하고, 프로토콜은 IETF(Internet Engineering Task Force)에서 관장한다. 그리고 WebSocket은 다른 HTTP 요청과 마찬가지로 80번 포트를 통해 웹 서버에 연결한다. HTTP 프로토콜의 버전은 1.1이지만 다음 헤더의 예에서 볼 수 있듯이, Upgrade 헤더를 사용하여 웹 서버에 요청한다. 당연한 이야기겠지만 클라이언트인 브라우저와 마찬가지로 웹 서버도 WebSocket 기능을 지원해야한다.</span></p>
+<div><div id="highlighter_378437" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">GET /... HTTP/1.1</code></div><div class="line number2 index1 alt1"><code class="js plain">Upgrade: WebSocket</code></div><div class="line number3 index2 alt2"><code class="js plain">Connection: Upgrade</code></div></div></td></tr></tbody></table></div></div>
+<p><span>브라우저는 "Upgrade: WebSocket" 헤더 등과 함께 랜덤하게 생성한 키를 서버에 보낸다. 웹 서버는 이 키를 바탕으로 토큰을 생성한 후 브라우저에 돌려준다. 이런 과정으로 WebSocket 핸드쉐이킹이 이루어진다.
+</span></p><p><span>그 뒤 Protocol Overhead 방식으로 웹 서버와 브라우저가 데이터를 주고 받는다. Protocol Overhead 방식은 여러 TCP 커넥션을 생성하지 않고 하나의 80번 포트 TCP 커넥션을 이용하고, 별도의 헤더 등으로 논리적인 데이터 흐름 단위를 이용하여 여러 개의 커넥션을 맺는 효과를 내는 방식이다.
+</span></p><p><span>이런 방식을 사용하기 때문에 방화벽이 있는 환경에서도 무리 없이 WebSocket을 사용할 수 있다.
+</span></p></li><li><h2>WebSocket을 지원하는 브라우저와 웹 서버
+</h2><p><span>클라이언트인 브라우저 중에서는 Chrome, Safari, Firefox, Opera에서 WebSocket을 사용할 수 있으며, 각종 모바일 브라우저에서도 WebSocket을 사용할 수 있다.
+</span></p><p><img src="./WebSocket과 Socket.io_files/122111_0950_WebSocketSo2.png" alt="122111_0950_WebSocketSo2.png" title="122111_0950_WebSocketSo2.png" class="iePngFix" style="" rel="xe_gallery"><span>
+				</span></p><p><span><strong>그림 2 WebSocket 지원 여부(이미지 출처: <a href="http://caniuse.com/">http://caniuse.com</a>)
+</strong></span></p><p><span>Mozilla 계열 브라우저와 Opera에서는 프록시와 관련된 보안 이슈 때문에 WebSocket의 기본 설정을 'disable'로 설정했다. about:config 페이지에서 설정을 변경할 수 있지만 많은 사용자들이 이 조치에 불만을 제기했다. 프록시와 관련된 문제는 Flash나 Java에서도 동일하게 발생하는데 WebSocket만 기본 설정에서 제외했다는 것에 대한 불만이었다. 이러한 의견을 반영한 것인지 Mozilla 재단에서는 Firefox 6.0부터 네임 스페이스를 붙여 MozWebSocket으로 다시 WebSocket을 지원하기 시작했다. 이 사례는 사용자들이 WebSocket에 거는 기대감이 굉장히 크다는 것을 엿볼 수 있는 사례다.
+</span></p><p><span>그러나 WebSocket 프로토콜은 아직 확정된 상태가 아니다. 현재 Draft75, Draft76 등의 이름으로 계속 드래프트 버전이 나오고 있다. 그렇기 때문에 브라우저별로 지원하는 WebSocket 버전도 다르다.
+</span></p><p><img src="./WebSocket과 Socket.io_files/122111_0950_WebSocketSo3.png" alt="122111_0950_WebSocketSo3.png" title="122111_0950_WebSocketSo3.png" class="iePngFix" style="" rel="xe_gallery"><span>
+				</span></p><p><span><strong>그림 3 브라우저 별 Web Socket 버전 지원 상황(이미지 출처: <a href="http://en.wikipedia.org/wiki/WebSocket">http://en.wikipedia.org/wiki/WebSocket</a>)
+</strong></span></p><p><span>웹 서버 중에서는 Apache에서 별도의 모듈을 설치하여 WebSocket을 사용할 수 있다. JEE 환경의 WAS에서는 Jetty, GlassFish에서 WebSocket을 사용할 수 있다. 또한 Node.js에서도 WebSocket을 사용할 수 있다. 그러나 아직 Tomcat은 공식적인 지원 계획을 발표하고 있지 않다. 
+</span></p></li><li><h2>WebSocket API를 사용해 보자
+</h2><p><span>백문이 불여일견이듯이 백문이 불여일행, 몸으로 익히는 공부가 제일 좋다. 다음의 간단한 예제로 WebSocket API를 구현해 보고 어떻게 활용할 수 있는지 알아보자.</span></p>
+<div><div id="highlighter_988069" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js keyword">if</code> <code class="js plain">(</code><code class="js string">'WebSocket'</code> <code class="js keyword">in</code> <code class="js plain">window) {</code></div><div class="line number2 index1 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js keyword">var</code> <code class="js plain">oSocket = </code><code class="js keyword">new</code> <code class="js plain">WebSocket(“ws:</code><code class="js comments">//localhost:80”);</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">oSocket.onmessage = </code><code class="js keyword">function</code> <code class="js plain">(e) { </code></div><div class="line number5 index4 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(e.data); </code></div><div class="line number6 index5 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">oSocket.onopen = </code><code class="js keyword">function</code> <code class="js plain">(e) {</code></div><div class="line number9 index8 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(“open”);</code></div><div class="line number10 index9 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">oSocket.onclose = </code><code class="js keyword">function</code> <code class="js plain">(e) {</code></div><div class="line number13 index12 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">console.log(“close”);</code></div><div class="line number14 index13 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">};</code></div><div class="line number15 index14 alt2">&nbsp;</div><div class="line number16 index15 alt1"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">oSocket.send(“message”);</code></div><div class="line number17 index16 alt2"><code class="js spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="js plain">oSocket.close();</code></div><div class="line number18 index17 alt1"><code class="js plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p><span>이 몇줄의 코드만 알고 있어도 WebSocket API를 사용할 수 있다. ws://가 눈에 띌 수도 있을 것 같다. WebSocket 프로토콜을 나타내는 ws://는 URI 스키마(Scheme)를 사용한다. 암호화 소켓은 https://처럼 wss://를 사용한다. 
+</span></p><p><span>위의 코드를 실행하면 먼저 new WebSocket() 메서드로 웹서버와 연결한다. 그리고 생성된 WebSocket 인스턴스를 이용하여 소켓에 연결할 때(onopen), 소켓 연결을 종료할 때(onclose), 메시지를 받았을 때(onmessage) 등의 이벤트를 각각 정의할 수 있다. 서버에 메시지를 보내고 싶을 때에는 send() 메서드를 이용한다. 그 외에 WebSocket API에 대한 더 자세한 내용은 <a href="http://dev.w3.org/html5/websockets/">http://dev.w3.org/html5/websockets/#the-websocket-interface</a>를 참조한다.
+</span></p></li><li><h2>그렇다면 Socket.io는 무엇인가?
+</h2><p><span>WebSocket은 다가올 미래의 기술이지 아직 인터넷 기업에서 시범적으로라도 써 볼 수 있는 기술이 아니다. WebSocket이 미래의 기술이라면 Socket.io는 현재 바로 사용할 수 있는 기술이다. Socket.io는 JavaScript를 이용하여 브라우저 종류에 상관없이 실시간 웹을 구현할 수 있도록 한 기술이다.
+</span></p><p><span>Guillermo Rauch가 만든 Socket.io는 WebSocket, FlashSocket, AJAX Long Polling, AJAX Multi part Streaming, IFrame, JSONP Polling을 하나의 API로 추상화한 것이다. 즉 브라우저와 웹 서버의 종류와 버전을 파악하여 가장 적합한 기술을 선택하여 사용하는 방식이다. 가령 브라우저에 Flash Plugin v10.0.0 이상(FlashSocket 지원 버전)이 설치되어 있으면 FlashSocket을 사용하고, Flash Plugin이 없으면 AJAX Long Polling 방식을 사용한다.
+</span></p><p><span>개발자가 각 기술을 깊이 이해하지 못하거나 구현 방법을 잘 알지 못해도 사용할 수 있다. Web Socket과 달리 Socket.io는 표준 기술이 아니고 Node.js 모듈로서 Guillermo Rauch가 CTO로 있는 LearnBoost(<a href="https://www.learnboost.com/">https://www.learnboost.com</a>)라는 회사의 저작물이며 MIT 라이센스를 가진 오픈소스이다. 현재 Node.js가 아닌 다른 프레임워크에서 Socket.io를 사용할 수 있도록 하는 시도가 있다.
+</span></p></li><li><h2>Socket.io를 사용해 보자
+</h2><p><span>Socket.io는 WebSocket과 마찬가지로 브라우저에서는 JavaScript를 사용한다. WebSocket 프로토콜은 IETF에서 관장하는 표준 프로토콜이라서 WebSocket을 지원하는 여러 서버 구현체(Jetty, GlassFish, Node.js, Netty, Grizzly 등)가 있지만 Socket.io는 Node.js 하나 밖에 없다. 
+</span></p><p><span>Socket.io를 사용하려면 다음과 같이 NPM(Node Package Management)을 이용하여 Socket.io를 웹 서버에 설치한다.</span></p>
+<div><div id="highlighter_687915" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">npm install socket.io</code></div></div></td></tr></tbody></table></div></div>
+<p><span>설치 후 아래와 같이 서버 스크립트를 작성한다.</span></p>
+<div><div id="highlighter_433601" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java comments">// 80 포트로 소켓을 연다</code></div><div class="line number2 index1 alt1"><code class="java plain">var io = require(</code><code class="java string">'socket.io'</code><code class="java plain">).listen(</code><code class="java value">80</code><code class="java plain">);</code></div><div class="line number3 index2 alt2">&nbsp;</div><div class="line number4 index3 alt1"><code class="java comments">// connection이 발생할 때 핸들러를 실행한다.</code></div><div class="line number5 index4 alt2"><code class="java plain">io.sockets.on(</code><code class="java string">'connection'</code><code class="java plain">, function (socket) {</code></div><div class="line number6 index5 alt1"><code class="java comments">// 클라이언트로 news 이벤트를 보낸다.</code></div><div class="line number7 index6 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">socket.emit(</code><code class="java string">'news'</code><code class="java plain">, { hello: </code><code class="java string">'world'</code> <code class="java plain">});</code></div><div class="line number8 index7 alt1">&nbsp;</div><div class="line number9 index8 alt2"><code class="java comments">// 클라이언트에서 my other event가 발생하면 데이터를 받는다.</code></div><div class="line number10 index9 alt1"><code class="java plain">socket.on(</code><code class="java string">'my other event'</code><code class="java plain">, function (data) {</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">console.log(data);</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">});</code></div><div class="line number13 index12 alt2"><code class="java plain">});</code></div></div></td></tr></tbody></table></div></div>
+<p><span>작성한 스크립트를 nohup 등을 이용하여 백그라운드로 실행한다. nohup을 사용하면 hang-up signal이 발생해도 스크립트의 동작이 멈추지 않는다.</span></p>
+<div><div id="highlighter_651883" class="syntaxhighlighter  js"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="js plain">nohup node ./server.js &amp;</code></div></div></td></tr></tbody></table></div></div>
+<p><span>클라이언트는 Socket.io 패키지에 있는 클라이언트 스크립트를 이용하여 아래와 같이 작성한다.
+</span></p>
+<div><div id="highlighter_45617" class="syntaxhighlighter  java"><div class="toolbar"><span><a href="http://helloworld.naver.com/helloworld/1336#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="java plain">&lt;script src=</code><code class="java string">"/socket.io/socket.io.js"</code><code class="java plain">&gt;&lt;/script&gt;</code></div><div class="line number2 index1 alt1"><code class="java plain">&lt;script&gt;</code></div><div class="line number3 index2 alt2"><code class="java comments">// localhost로 연결한다.</code></div><div class="line number4 index3 alt1"><code class="java plain">var socket = </code></div><div class="line number5 index4 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">io.connect(</code><code class="java string">'<a href="http://localhost/">http://localhost</a>'</code><code class="java plain">);</code></div><div class="line number6 index5 alt1">&nbsp;</div><div class="line number7 index6 alt2"><code class="java comments">// 서버에서 news 이벤트가 일어날 때 데이터를 받는다.</code></div><div class="line number8 index7 alt1"><code class="java plain">socket.on(</code><code class="java string">'news'</code><code class="java plain">, </code></div><div class="line number9 index8 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java plain">function (data) {</code></div><div class="line number10 index9 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">console.log(data);</code></div><div class="line number11 index10 alt2"><code class="java spaces">&nbsp;&nbsp;</code><code class="java comments">//서버에 my other event 이벤트를 보낸다.</code></div><div class="line number12 index11 alt1"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">socket.emit(</code><code class="java string">'my other event'</code><code class="java plain">, </code></div><div class="line number13 index12 alt2"><code class="java spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="java plain">{ my: </code><code class="java string">'data'</code> <code class="java plain">});</code></div><div class="line number14 index13 alt1"><code class="java plain">});</code></div><div class="line number15 index14 alt2"><code class="java plain">&lt;/script&gt;</code></div></div></td></tr></tbody></table></div></div>
+<p><span>이로써 Socket.io를 사용할 준비는 모두 끝났다. 브라우저에서 클라이언트 페이지를 열면 클라이언트 콘솔에는 "{ hello : 'world' }"가, 서버 콘솔에는 "{ my : 'data' }"가 출력되는 것을 확인할 수 있을 것이다.
+</span></p><p><span>io.Socket() 메서드를 호출하면 웹 서버(Node.js를 이용하는 웹 서버)와 연결한다. 이때 서버로부터 sessionid 정보와 timeout 정보를 받고, 브라우저의 WebSocket 지원 여부, FlashSocket 지원 여부를 보내고 크로스 도메인 설정 정보 등을 주고 받은 후 적합한 실시간 웹 방식을 선택한다.
+</span></p><p><span>Socket.io를 활용하는 다양한 예제는 <a href="http://socket.io/">http://socket.io/#how-to-use</a>에서 확인할 수 있다.
+</span></p></li><li><h2>마치며
+</h2><p><span>실시간으로 상호작용하는 웹 서비스를 짧은 시간 안에 쉽게 구현할 수 있는 기술은 빠르게 발전하고 있다. 지금보다 훨씬 더 다양하게 상호작용하는 UX가 선보일 것이라는 게 막연한 공상은 아닐 것이다. 웹 소켓이나 Socket.io 모두 현재 발전 중인 기술이다. 이 기술이 발전하는 과정을 지켜보는 것은 큰 즐거움이 될 것이라고 생각한다.</span></p></li><div id="__KO_DIC_LAYER__" style="padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; position: fixed; z-index: 999999999; overflow-x: hidden; overflow-y: hidden; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(51, 51, 119); border-right-color: rgb(51, 51, 119); border-bottom-color: rgb(51, 51, 119); border-left-color: rgb(51, 51, 119); display: none; "><iframe frameborder="0" scrolling="yes" style="width: 100%; height: 100%; background-color: rgb(255, 255, 255); "></iframe></div>
+
+<div>
+<br><br>
+</div>
+<div class="info_person">
+							<div class="thmb">
+								<img src="./WebSocket과 Socket.io_files/심상민.png" alt="심상민.png" title="심상민.png" class="iePngFix" style="" rel="xe_gallery">
+							</div>
+							<dl>
+							<dt>NHN Ajax UI4팀 심상민</dt>
+							<dd>2001년부터 PHP 저작도구인 미니보드를 만들어 배포 했으며 SK C&amp;C를 거쳐 현재는 NHN에서 UI개발자로 일하고 있습니다. 사내 자바스크립트와 FE성능 강의를 진행하고 있으며 교육이나 발표, 저술 활동에 관심이 많고 다양한 분야의 기술을 접하는 것을 좋아합니다. 최근에 자바스크립트 컨퍼런스인 jscamp의 운영을 같이 맡아 진행했으며 디자인에도 욕심이 많아 진정한 잡부로 거듭나고 있습니다.</dd></dl></div></div></div><!--AfterDocument(1336,4)-->                                                    </div>
+                                                                        <dl class="usedTag">
+                            <dt>Tag :</dt>
+                            <dd>
+                                                                <a href="http://helloworld.naver.com/index.php?mid=textyle&vid=helloworld&search_target=tag&search_keyword=WebSocket" rel="tag">WebSocket</a>
+                                                                ,&nbsp;
+                                                                                                <a href="http://helloworld.naver.com/index.php?mid=textyle&vid=helloworld&search_target=tag&search_keyword=Socket.io" rel="tag">Socket.io</a>
+                                                                                            </dd>
+                        </dl>
+                        
+                                                <dl class="pagination paginationPost">
+                                                            <dt>이전글</dt><dd><a href="http://helloworld.naver.com/index.php?mid=textyle&document_srl=1341&vid=helloworld" class="prev">Spring-Test-MVC 프로젝트 소개</a></dd>
+                                                                                        <dt>다음글</dt><dd><a href="http://helloworld.naver.com/index.php?mid=textyle&document_srl=1329&vid=helloworld" class="next">Java Garbage Collection</a></dd>
+                                                    </dl>
+                        
+                                                <a name="trackback"></a>
+                        <div class="feedback trackback">
+                            <h3 class="feedbackTitle">Trackbacks <em>0</em></h3>
+                                                        <dl class="trackbackURL">
+                                <dt>엮인글 주소</dt>
+                                <dd><a href="http://helloworld.naver.com/index.php?document_srl=1336&key=322&act=trackback&vid=helloworld" onclick="return false">http://helloworld.naver.com/index.php?document_srl=1336&amp;key=322&amp;act=trackback&amp;vid=helloworld</a></dd>
+                            </dl>
+                                                                                </div>
+                                                						
+                        <a name="comment"></a>
+						
+	<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;">
+
+<script type="text/javascript">
+	var socialxe_document_srl = '1336';
+	var socialxe_skin = 'helloworld';
+	var socialxe_list_count = '10';
+	var socialxe_content_link = 'http://helloworld.naver.com/helloworld/1336';
+	var socialxe_comment_srl = '';
+	var socialxe_enter_send = 'Y';
+	var socialxe_auto_view_sub = 'Y';
+		var socialxe_auto_login_key = 'Y';
+	</script>
+
+<a name="socialxe_comment"></a>
+<div class="socialxe_comment">
+			<form action="http://helloworld.naver.com/helloworld/" method="post" onsubmit="return socialSend(this, insert_social_comment);">
+		<input type="hidden" name="document_srl" value="1336">
+		<input type="hidden" name="content_link" value="http://helloworld.naver.com/helloworld/1336">
+		<input type="hidden" name="skin" value="helloworld">
+		<input type="hidden" name="list_count" value="10">
+		<input type="hidden" name="content_title" value="WebSocket과 Socket.io">
+
+		<div class="socialxe_comment_input">
+					<fieldset class="socialxe_service">
+		<legend>서비스 선택</legend>
+					<ul>
+								<li>
+																		<a href="http://helloworld.naver.com/index.php?mid=textyle&module=socialxe&act=dispSocialxeLogin&provider=twitter&query=mid%253Dhelloworld%2526document_srl%253D1336&vid=helloworld" onclick="providerLogin(this.href, &#39;helloworld&#39;); return false;">
+												<img width="24" height="24" src="./WebSocket과 Socket.io_files/twitter_off.png" title="트위터 Login" alt="트위터 Login" class="iePngFix">
+						</a>
+									</li>
+								<li>
+																		<a href="http://helloworld.naver.com/index.php?mid=textyle&module=socialxe&act=dispSocialxeLogin&provider=me2day&query=mid%253Dhelloworld%2526document_srl%253D1336&vid=helloworld" onclick="providerLogin(this.href, &#39;helloworld&#39;); return false;">
+												<img width="24" height="24" src="./WebSocket과 Socket.io_files/me2day_off.png" title="미투데이 Login" alt="미투데이 Login" class="iePngFix">
+						</a>
+									</li>
+								<li>
+																		<a href="http://helloworld.naver.com/index.php?mid=textyle&module=socialxe&act=dispSocialxeLogin&provider=facebook&query=mid%253Dhelloworld%2526document_srl%253D1336&vid=helloworld" onclick="providerLogin(this.href, &#39;helloworld&#39;); return false;">
+												<img width="24" height="24" src="./WebSocket과 Socket.io_files/facebook_off.png" title="페이스북 Login" alt="페이스북 Login" class="iePngFix">
+						</a>
+									</li>
+							</ul>
+				</fieldset>
+
+		<fieldset class="socialxe_input">
+		<legend>댓글</legend>
+			<div class="socialxe_name">
+									로그인해주세요.							</div>
+
+			<div class="socialxe_wrap">
+				<div class="socialxe_left">
+											<div class="socialxe_profile_image"><img src="./WebSocket과 Socket.io_files/anonymous.png" alt="profile image"></div>
+					
+					<div class="socialxe_content_input">
+						
+						<fieldset><div>
+						<textarea class="socialxe_resizable" rows="3" cols="50" disabled="disabled" bind_enter="true" style="resize: none; position: absolute; top: 0px; left: -9999px; width: 744px; line-height: normal; text-decoration: none; letter-spacing: normal; height: 48px; overflow-y: hidden; " tabindex="-1" dummy="true"></textarea><textarea name="content" id="socialxe_main_content" class="socialxe_resizable" rows="3" cols="50" disabled="disabled" bind_enter="true" style="resize: none; height: 48px; overflow-y: hidden; " resizable="true"></textarea>
+						</div></fieldset>
+					</div>
+				</div>
+				<div class="socialxe_submit"><input type="submit" value="등록"></div>
+			</div>
+		</fieldset>
+
+		<div class="socialxe_poweredby">
+			<a href="http://socialxe.net/" target="_blank"><img src="./WebSocket과 Socket.io_files/poweredby.png" alt="powered by SocialXE" class="iePngFix"></a>
+		</div>
+				<script type="text/javascript">
+		<!--
+			enterSend();
+		-->
+		</script>
+		
+		</div>
+
+		</form>
+	
+	<div class="socialxe_comment_list">
+		
+<ul>
+</ul>
+
+	</div>
+</div>
+
+<form id="socialxe_delete_comment_form" action="http://helloworld.naver.com/helloworld/" method="post">
+	<input type="hidden" name="document_srl" value="1336">
+	<input type="hidden" name="content_link" value="http://helloworld.naver.com/helloworld/1336">
+	<input type="hidden" name="skin" value="helloworld">
+	<input type="hidden" name="list_count" value="10">
+	<input type="hidden" name="comment_srl">
+</form>
+
+<script type="text/javascript">
+<!--
+	
+	-->
+</script></div></div>
+						
+											
+				
+				
+							</div>
+			<hr>
+
+			
+			<div class="extension e1">
+				<div class="section">
+					<h2>카테고리</h2>
+					<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;">
+<div class="widgetContainer">
+	<div class="widgetTree">
+		<a href="http://helloworld.naver.com/helloworld/textyle" class="all strong">
+				전체글				</a> <span class="sum">(49)</span>
+		<ul>
+								<li class=" nav_tree_off " id="category_parent_84">
+				<a href="http://helloworld.naver.com/index.php?mid=textyle&category=84&vid=helloworld" class="nav_tree_label ">TechSensing</a>
+				<span class="sum">(6)</span>
+							</li>
+											<li class=" nav_tree_off " id="category_parent_85">
+				<a href="http://helloworld.naver.com/index.php?mid=textyle&category=85&vid=helloworld" class="nav_tree_label ">개발자Tip</a>
+				<span class="sum">(14)</span>
+							</li>
+											<li class="nav_tree_last nav_tree_off " id="category_parent_86">
+				<a href="http://helloworld.naver.com/index.php?mid=textyle&category=86&vid=helloworld" class="nav_tree_label ">The Platform 2011</a>
+				<span class="sum">(29)</span>
+							</li>
+											
+		</ul>
+	</div>
+</div>
+</div></div>
+				</div>
+
+				<div class="section">
+					<h2>최근 글</h2>
+					<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;"><div class="widgetContainer">
+                    <ul class="widgetA">
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/8888" class="title">1월 4주 Tech Sensing:...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/9407" class="title">1월 4주 Tech Sensing:...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/8794" class="title">FFmpeg을 이용한 Androi...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/8180" class="title">PhoneGap을 이용한 앱 ...</a>
+
+                                            <em class="replyNum" title="Replies"><a href="http://helloworld.naver.com/helloworld/8180#comment">2</a></em>
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/7122" class="title">HTTP Live Streaming</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/7005" class="title">SSD를 쓰면 DBMS가 빨...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/6043" class="title">Garbage Collection 모니...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/5016" class="title">1월1째주 Tech Sensing ...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/4717" class="title">Garbage Collection과 S...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/2675" class="title">The Platform 2011 pdf...</a>
+
+                                            <em class="replyNum" title="Replies"><a href="http://helloworld.naver.com/helloworld/2675#comment">6</a></em>
+                    
+                    
+                    
+                                    </li>
+            </ul>
+
+    
+
+
+    </div>
+</div></div>
+				</div>
+
+				<div class="section">
+					<h2>최근 댓글</h2>
+					<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;"><div class="widgetContainer">
+                    <ul class="widgetA">
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/1329#social_comment_9563" class="title">Perm 영역의 경우는 신경쓸필...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/8180#social_comment_8662" class="title">좋은 정보 감사합니다. 폰갭에...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/8180#social_comment_8500" class="title">폰갭 정리가 잘 되었네요. 앱...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/1207#social_comment_7509" class="title">정말 국내에 거의 없는 ffmpe...</a>
+
+                    
+                    
+                    
+                                    </li>
+                <li>
+
+                                                                    
+                    <a href="http://helloworld.naver.com/helloworld/2675#social_comment_5843" class="title">읽어봐야 할.</a>
+
+                    
+                    
+                    
+                                    </li>
+            </ul>
+
+    
+
+
+    </div>
+</div></div>
+				</div>
+
+				<div class="section">
+					<h2>최근 엮인글</h2>
+					<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;"><div class="widgetContainer">
+                    <ul class="widgetA">
+            </ul>
+
+    
+
+
+    </div>
+</div></div>
+				</div>
+
+				<div class="section">
+					<h2>태그</h2>
+					<div style="overflow:hidden;"><div style="*zoom:1;padding:0px 0px 0px 0px !important; padding:none !important;">
+<div class="widgetContainer">
+    <ul class="widgetTagCloud">
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=DEVIEW&vid=helloworld">DEVIEW</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8&vid=helloworld">자바스크립트</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=Hadoop&vid=helloworld">Hadoop</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=SQL&vid=helloworld">SQL</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=CUBRID&vid=helloworld">CUBRID</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%EB%8F%99%EC%98%81%EC%83%81&vid=helloworld">동영상</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=ffmpeg&vid=helloworld">ffmpeg</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81&vid=helloworld">모니터링</a>
+                    </li>
+                <li class="level1">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%EB%AA%A8%EB%B0%94%EC%9D%BC&vid=helloworld">모바일</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=JVM&vid=helloworld">JVM</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=CSS&vid=helloworld">CSS</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=Map-Reduce&vid=helloworld">Map-Reduce</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=GC&vid=helloworld">GC</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=MongoDB&vid=helloworld">MongoDB</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%ED%85%8C%EC%8A%A4%ED%8A%B8&vid=helloworld">테스트</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=NoSQL&vid=helloworld">NoSQL</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=DBMS&vid=helloworld">DBMS</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=Push&vid=helloworld">Push</a>
+                    </li>
+                <li class="level1">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=JAVA&vid=helloworld">JAVA</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=GarbageCollection&vid=helloworld">GarbageCollection</a>
+                    </li>
+                <li class="level4">
+                            <a href="http://helloworld.naver.com/index.php?mid=textyle&search_target=tag&search_keyword=%ED%91%B8%EC%8B%9C&vid=helloworld">푸시</a>
+                    </li>
+            </ul>
+</div>
+</div></div>
+				</div>
+				<div class="section">
+					<form action="http://helloworld.naver.com/" method="get" class="widgetSearchForm">
+					<input name="vid" type="hidden" value="helloworld">
+					<input name="mid" type="hidden" value="textyle">
+					<input name="act" type="hidden" value="dispTextyle">
+					<input name="search_target" type="hidden" value="title_content">
+					<fieldset class="sp_bg">
+						<legend>검색</legend>
+						<input name="search_keyword" type="text" class="inputText" value="" accesskey="S" title="SEARCH">
+						<input type="submit" value="검색" class="buttonSearch">
+					</fieldset>
+					</form>
+				</div>
+				<div class="section">
+					<ul class="lst_sns">
+					<li><a href="http://me2day.net/helloworld_nhn/" target="_blank" class="me2day">미투데이</a></li>
+					<li><a href="http://twitter.com/#!/helloworld_nhn/" target="_blank" class="twitter">트위터</a></li>
+					<li><a href="https://www.facebook.com/pages/Helloworld_nhn/235817773158003" target="_blank" class="facebook">페이스북</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr>
+
+		<div id="footer">                      
+                        <a target="_blank" href="http://www.nhncorp.com/">NHN Corp.</a> All Rights Reserved.
+                        <!--
+			<address>
+			Powered by <a href="http://textyle.kr/">Textyle</a>                        
+			</address>
+			<div class="language">
+				<button type="button" onclick="jQuery('#selectLang').toggleClass('hide'); return false;" class="selected" title="ko">한국어</button>
+				<ul class="hide" id="selectLang">
+										<li><button type="button" onclick="doChangeLangType('en');return false;">English</button></li>
+										<li><button type="button" onclick="doChangeLangType('zh-CN');return false;">中文(中国)</button></li>
+										<li><button type="button" onclick="doChangeLangType('jp');return false;">日本語</button></li>
+										<li><button type="button" onclick="doChangeLangType('es');return false;">Español</button></li>
+										<li><button type="button" onclick="doChangeLangType('ru');return false;">Русский</button></li>
+										<li><button type="button" onclick="doChangeLangType('fr');return false;">Français</button></li>
+										<li><button type="button" onclick="doChangeLangType('zh-TW');return false;">中文(臺灣)</button></li>
+										<li><button type="button" onclick="doChangeLangType('vi');return false;">Tiếng Việt</button></li>
+										<li><button type="button" onclick="doChangeLangType('mn');return false;">Mongolian</button></li>
+										<li><button type="button" onclick="doChangeLangType('tr');return false;">Turkey</button></li>
+									</ul>
+			</div>
+                        -->
+		</div>
+	</div>
+</div>
+    
+    <div id="waitingforserverresponse"></div>
+
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/fcdd5b850b76d5792b76db961999bdaf.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/c644969301b829481e41a24024c9b495.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/0748bcfc648e48164444bcbb9014b3f7.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/autolink.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/jquery-ui.packed.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/jquery.ui.datepicker-ko.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/resize_image.min.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/2f64888e121daa5b0858b5a9344cf081.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/c18ee13f931f33fcfa28c75aee91ad67.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/c33bb771e66acc7558c5f21f008a8663.ko.compiled.js"></script>
+    <script type="text/javascript" src="./WebSocket과 Socket.io_files/e5bc3cf68a32b6d76ebf33c5120fd8a2.ko.compiled.js"></script>
+
+
+<div id="popup_menu_area" style="z-index: 9999; display: none; "></div><div class="me2day_databox" style="position:absolute;top:0;left:-10000px"><iframe class="dataFrame" name="me2DataUniq_16250039916485548" id="me2DataUniq_16250039916485548" src="./WebSocket과 Socket.io_files/data.htm" allowtransparency="true" title="data frame" width="0" height="0" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="">&amp;lt;p&amp;gt;Your browser does not support i.&amp;lt;/p&amp;gt;</iframe></div></body></html>

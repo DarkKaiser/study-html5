@@ -1,0 +1,82 @@
+# Vert.x를 실행하였는데 JAVA 파일 컴파일이 안될 때...
+  > vertx run Main.java
+    Failed to create verticle
+    java.lang.RuntimeException: Compilation failed
+          at org.vertx.java.deploy.impl.java.CompilingClassLoader.<init>(CompilingClassLoader.java:75)
+          at org.vertx.java.deploy.impl.java.JavaVerticleFactory.createVerticle(JavaVerticleFactory.java:48)
+          at org.vertx.java.deploy.impl.VerticleManager$10.run(VerticleManager.java:777)
+          at org.vertx.java.core.impl.Context$2.run(Context.java:119)
+          at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processEventQueue(AbstractNioWorker.java:454)
+          at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:331)
+          at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+          at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+          at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+          at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+          at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+          at java.lang.Thread.run(Unknown Source)
+    Caused by: java.lang.NullPointerException
+          at org.vertx.java.deploy.impl.java.CompilingClassLoader.<init>(CompilingClassLoader.java:57)
+          ... 11 more
+
+  ** 해결책) 윈도우 환경변수에 JAVA_HOME을 추가한 후, Path를 수정한다.
+     JAVA_HOME=C:\Program Files\Java\jdk1.8.0_45
+     Path=%JAVA_HOME%\bin;
+
+
+# 다음과 같은 SocketIO 관련 오류가 날때
+  > vertx run Main.java
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:6: error: package com.nhncorp.mods.socket.io does not exist
+  import com.nhncorp.mods.socket.io.SocketIOServer;
+                                   ^
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:7: error: package com.nhncorp.mods.socket.io does not exist
+  import com.nhncorp.mods.socket.io.SocketIOSocket;
+                                   ^
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:8: error: package com.nhncorp.mods.socket.io.impl does not exist
+  import com.nhncorp.mods.socket.io.impl.DefaultSocketIOServer;
+                                        ^
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:16: error: cannot find symbol
+          SocketIOServer io = new DefaultSocketIOServer(vertx, server);
+          ^
+    symbol:   class SocketIOServer
+    location: class Main
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:16: error: cannot find symbol
+          SocketIOServer io = new DefaultSocketIOServer(vertx, server);
+                                  ^
+    symbol:   class DefaultSocketIOServer
+    location: class Main
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:18: error: cannot find symbol
+          io.sockets().onConnection(new Handler<SocketIOSocket>() {
+                                                ^
+    symbol:   class SocketIOSocket
+    location: class Main
+  D:\Solution-CNA\DARKKAISER_STUDY_GITHUB\Tech\HTML5\WebSocket\websocket_support_lib\Java\vert.x\mod-socket-io\example\Ver
+  txSocketIo\src\main\java\Main.java:19: error: cannot find symbol
+              public void handle(final SocketIOSocket socket) {
+                                       ^
+    symbol: class SocketIOSocket
+  Failed to create verticle
+  java.lang.RuntimeException: Compilation failed
+          at org.vertx.java.deploy.impl.java.CompilingClassLoader.<init>(CompilingClassLoader.java:75)
+          at org.vertx.java.deploy.impl.java.JavaVerticleFactory.createVerticle(JavaVerticleFactory.java:48)
+          at org.vertx.java.deploy.impl.VerticleManager$10.run(VerticleManager.java:777)
+          at org.vertx.java.core.impl.Context$2.run(Context.java:119)
+          at org.jboss.netty.channel.socket.nio.AbstractNioWorker.processEventQueue(AbstractNioWorker.java:454)
+          at org.jboss.netty.channel.socket.nio.AbstractNioWorker.run(AbstractNioWorker.java:331)
+          at org.jboss.netty.channel.socket.nio.NioWorker.run(NioWorker.java:35)
+          at org.jboss.netty.util.ThreadRenamingRunnable.run(ThreadRenamingRunnable.java:102)
+          at org.jboss.netty.util.internal.DeadLockProofWorker$1.run(DeadLockProofWorker.java:42)
+          at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+          at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+          at java.lang.Thread.run(Thread.java:745)
+  Caused by: java.lang.RuntimeException: Compilation failed!
+          at org.vertx.java.deploy.impl.java.CompilingClassLoader.<init>(CompilingClassLoader.java:72)
+          ... 11 more
+
+  ** 해결책) mod-socket-io 관련 JAR를 불러오지 못해서 발생하는 오류
+     실행시에 클래스패스를 지정되주거나 혹은 mod-socket-io 관련 jar를 vert.x의 lib 폴더로 복사해준다.

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Socket.io tests</title>
+	<link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/js/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="/js/bootstrap/css/docs.css" rel="stylesheet">
+	<link href="/css/prettify.css" rel="stylesheet">
+	<style>
+			/*body {*/
+			/*padding-top: 60px;*/
+			/*}*/
+	</style>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="#">Socket.io Test</a>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li class="active"><a href="/">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+</div>
+<header class="jumbotron subhead" id="overview">
+	<div class="container">
+		<h1>Authorization and handshaking</h1>
+		<p class="lead">Authorization can be applied global and namespace level.</p>
+	</div>
+</header>
+
+<div class="container">
+<div id="myCarousel" class="carousel slide">
+<div class="carousel-inner">
+<div class="item active">
+	<div class="page-header">
+		<h1 id="globalAuthTest">Global authorization</h1>
+	</div>
+	<label>Socket.io Server URL</label>
+	<input id="urlInput" type="text" value="http://localhost:9191">
+	?pass=
+	<select id="passInput">
+		<option value="true">true</option>
+		<option value="false">false</option>
+	</select>
+	<span class="help-block">Please input the Socket.io server to connect.</span>
+	<button id="connectBtn" class="btn">Connect</button>
+	<span class="help-inline"></span>
+	<hr class="soften">
+	<div class="page-header">
+		<h1>Codes</h1>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Node.js Server with <span class='label label-info'>socket.io</span></h3>
+<pre class="prettyprint linenums languague-javascript">
+io.configure(function (){
+	io.set('authorization', function (handshakeData, callback) {
+		if(handshakeData.query.pass && handshakeData.query.pass == 'true') {
+			callback(null, true);
+		} else {
+			callback('reason', false);
+		}
+	});
+});
+</pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Vert.x Serer with <span class='label label-info'>socket.io module for vert.x</span></h3>
+<pre class="prettyprint linenums languague-java">
+io.setAuthHandler(new AuthorizationHandler() {
+	public void handle(HandshakeData handshakeData, AuthorizationCallback callback) {
+		boolean isPass = Boolean.parseBoolean(handshakeData.getQueryParams().get("pass"));
+		if(isPass) {
+			callback.handle(null, true);
+		} else {
+			callback.handle(new RuntimeException("reason"), false);
+		}
+	}
+});
+</pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Socket.io client</h3>
+<pre class="prettyprint linenums languague-javascript">
+socket = io.connect($('#urlInput').val() + "?pass=" + $('#passInput').val());
+socket.on("connect", function(){
+	// passed
+});
+socket.on('error', function(reason){
+	if(reason === "handshake error") {
+		// not passed
+	}
+});
+</pre>
+		</div>
+	</div>
+</div>
+<div class="item">
+	<div class="page-header">
+		<h1 id="getDataTest">set/get Handshake Data</h1>
+	</div>
+	<label>Test: <span class="help-inline">Check if the server can get/set a key/value from handshake data related with the client by using <span class="label">handshakeData</span>.</span></label>
+	<button id="getBtn" class="btn">Get</button>
+	<span class="help-inline"></span>
+	<hr class="soften">
+	<div class="page-header">
+		<h1>Codes</h1>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Node.js Server with <span class='label label-info'>socket.io</span></h3>
+<pre class="prettyprint linenums languague-javascript">
+if(handshakeData.query.pass && handshakeData.query.pass == 'true') {
+	handshakeData.foo = 'bar';
+	callback(null, true);
+}
+	...
+socket.emit('data', {foo:socket.handshake.foo});
+</pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Vert.x Serer with <span class='label label-info'>socket.io module for vert.x</span></h3>
+<pre class="prettyprint linenums languague-java">
+if(isPass) {
+	handshakeData.putString("foo", "bar");
+	callback.handle(null, true);
+}
+	...
+String foo = socket.handshakeData().getString("foo");
+socket.emit("data", new JsonObject().putString("foo", foo));
+</pre>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12">
+			<h3>Socket.io client</h3>
+<pre class="prettyprint linenums languague-javascript">
+socket.on('data', function(msg){
+	// do something
+});
+</pre>
+		</div>
+	</div>
+</div>
+<div class="item">
+	<div class="page-header">
+		<h1>Passed All Tests</h1>
+	</div>
+	<label>Go back to <a href="/">home</a> or restart <a href="/tests/global-authorization.html">this test</a>.</label>
+</div>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+	<div class="container">
+		<p class="pull-right"><a href="#">Back to top</a></p>
+		<p>For more information, come and get some, <a href="https://github.com/keesun/mod-socket-io">mod-socket-io</a>.</p>
+		<p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+		<p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+		<p>Designs from <a href="http://twitter.github.com/bootstrap">Twitter, Bootsrap</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+		<ul class="footer-links">
+			<li><a href="http://vertx.io">Vert.x</a></li>
+			<li><a href="http://socket.io">Socket.io</a></li>
+			<li><a href="https://github.com/keesun/mod-socket-io">mod-socket-io</a></li>
+		</ul>
+	</div>
+</footer>
+
+<script src="/js/jquery-1.7.2.min.js"></script>
+<script src="/js/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/socket.io-0.9.10.js"></script>
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+	$(function(){
+		prettyPrint();
+
+		var $test = $('#myCarousel')
+				, socket
+				, $connectBtn = $('#connectBtn')
+				, $connectBtnNext = $connectBtn.next()
+				, $getBtn = $('#getBtn')
+				, $getBtnNext = $getBtn.next()
+				, $connectBtn2 = $('#connectBtn2')
+				, $connectBtn2Next = $connectBtn2.next()
+				;
+
+		$test.carousel('pause');
+
+		next = function() {
+			$test.carousel('next');
+		}
+
+		function sent($element) {
+			$element.empty();
+			$element.append("<span class='label label-success'>Sent</span>");
+		}
+
+		function got($element, $title) {
+			$element.append(" <button class='btn btn-info' onclick='next();'>Next</button>");
+			$title.append(" <span class='label label-success'>Passed</span>");
+		}
+
+		$connectBtn.click(function(){
+			socket = io.connect($('#urlInput').val() + "?pass=" + $('#passInput').val());
+			socket.on("connect", function(){
+				$connectBtnNext.append("passed");
+				got($connectBtnNext, $('#globalAuthTest'));
+			});
+			socket.on('error', function(reason){
+				if(reason === "handshake error") {
+					$connectBtnNext.append("not passed");
+					got($connectBtnNext, $('#globalAuthTest'));
+				}
+			});
+			socket.on('data', function(msg){
+				$getBtnNext.append(JSON.stringify(msg));
+				got($getBtnNext, $('#getDataTest'));
+			});
+		});
+
+		$getBtn.click(function(){
+			socket.emit('get');
+			sent($getBtnNext);
+		});
+
+		$connectBtn2.click(function(){
+			var namespace = io.connect($('#urlInput2').val() + '/private?pass=' + $('#passInput2').val());
+			namespace.on('error', function(reason){
+				$connectBtn2Next.append("not passed");
+				got($connectBtn2Next, $('#namespaceAuthTest'));
+			});
+			namespace.on('connect', function(){
+				$connectBtn2Next.append("passed");
+				got($connectBtn2Next, $('#namespaceAuthTest'));
+			});
+		});
+	});
+</script>
+</body>
+</html>

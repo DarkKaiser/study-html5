@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Tistory!</title>
+<style type="text/css">
+.img_error {overflow:hidden;text-indent:-9999px;background:url(http://cfs.tistory.com/static/images/error.gif) no-repeat;}
+.screen_out {display:block;overflow:hidden;position:absolute;left:-9999px;width:1px;height:1px;font-size:0;line-height:0;text-indent:-9999px;}
+.container {text-align:center;margin-top:75px;}
+.wrap_error {width:558px;margin:0 auto;text-align:left;font-size:12px;line-height:1.5;font-family:Dotum, '돋움';color:#444;}
+.wrap_error .head_error {overflow:hidden;width:558px;height:37px;margin:0;background-position:0 0;}
+.wrap_error .section_error {position:relative;}
+.wrap_error .section_error .link_logo {position:absolute;left:0px;top:-40px;width:120px;height:30px;text-indent:-9999px;overflow:hidden;}
+.wrap_error .section_error .wrap_content {padding:46px 0 0 44px;}
+.section_error .tit_error1 {overflow:hidden;height:52px;margin:0;font-weight:bold;}
+.section_error .tit_error1 .ico_warning {float:left;width:61px;height:52px;vertical-align:middle;background-position:0 -85px;}
+.section_error .tit_error1 .tit {float:left;width:400px;padding:3px 0 0 6px;font-size:16px;line-height:24px;color:#333;letter-spacing:-1px;}
+.section_error .tit_error1 .single {padding-top:12px;}
+.section_error .tit_error1 .size_type1 {padding-top:2px;font-size:14px;}
+.section_error .tit_error1 .txt_desc {color:#666;}
+.section_error .txt_desc {clear:both;width:470px;margin:0 0 26px 0;padding:27px 0 0 2px;}
+.section_error .link_cs {font-weight:bold;color:#f1631b;}
+.section_error .btn_cs {overflow:hidden;position:absolute;right:-4px;top:-32px;padding:4px;text-decoration:none;font-size:11px;color:#444;text-align:right;letter-spacing:-1px;}
+.section_error .btn_cs .ico_dot {width:2px;height:4px;margin:4px 4px 4px 3px;vertical-align:middle;background-position:-65px -85px;border:0 none;}
+.section_error .wrap_btn {clear:both;overflow:hidden;width:100%;text-align:center;}
+.section_error .wrap_btn .inner {display:table;display:inline-block;margin:0 auto;padding-right:48px;}
+.section_error .wrap_btn .btn_prev {float:left;width:43px;height:28px;margin-right:4px;cursor:pointer;border:0 none;background-position:0 -47px;}
+.section_error .wrap_btn .btn_home {float:left;width:117px;height:28px;cursor:pointer;border:0 none;background-position:-53px -47px;}
+.section_error .wrap_desc {overflow:hidden;margin:31px 0 30px 3px;padding:17px 29px;border:1px solid #e7e8ed;background-color:#fbfbfc;}
+.section_error .wrap_desc .list_desc,
+.section_error .wrap_desc .tit,
+.section_error .wrap_desc .txt {margin:0;padding:0;}
+.section_error .wrap_desc .list_desc {color:#666;}
+.section_error .wrap_desc .tit {padding-bottom:6px;letter-spacing:-1px;}
+.section_error .wrap_desc .txt {padding-bottom:2px;}
+.section_error .wrap_desc .link_detail {font-weight:bold;color:#f1631b;letter-spacing:-1px;}
+.section_error .wrap_desc2 {float:left;margin:31px 0 30px 3px;padding:11px 28px 10px 30px;border:1px solid #e7e8ed;background-color:#fbfbfc;}
+.section_error .list_desc2 {margin:0;}
+.section_error .list_desc2 .tit {float:left;margin:0;padding:0;color:#f1631b;line-height:20px;}
+.section_error .list_desc2 .txt {width:330px;margin:0;padding:0;margin-left:72px;line-height:20px;color:#666;}
+.section_error .wrap_desc3 {float:left;margin:-9px 0 30px 3px;padding:11px 28px 12px 30px;border:1px solid #e7e8ed;background-color:#fbfbfc;}
+.section_error .list_desc3 {margin:0;}
+.section_error .list_desc3 .tit {float:left;margin:0;padding:0;color:#f1631b;line-height:20px;}
+.section_error .list_desc3 .txt {width:342px;margin:0;padding:0;margin-left:59px;line-height:20px;color:#666;}
+.wrap_error .copyright {clear:both;display:block;margin-top:38px;padding:7px 0 0 0;text-align:center;font-style:normal;font-size:11px;font-family:Tahoma;color:#999;border-top:1px solid #e8e8e8;}
+.wrap_error .copyright .link_daum {color:#999;text-decoration:none;}
+</style>
+</head>
+
+	<body>
+		<!-- 존재하지 않는 페이지 -->
+		<div class="container">
+			<div class="wrap_error">
+				<h1 class="img_error head_error">TISTORY</h1>
+				<div class="section_error">
+					<h2 class="screen_out">에러페이지</h2>
+					<a href="http://tistory.com" class="link_logo" title="티스토리 홈으로 바로가기">TISTORY</a>
+					<div class="wrap_content">
+						<p class="tit_error1"><img src="http://cfs.tistory.com/static/images/blank.gif" width="1" height="1" class="img_error ico_warning" alt="" /><strong class="tit single">찾으시려는 웹페이지는 존재하지 않는 페이지입니다.</strong></p><!-- 한줄일때 single 클래스 삽입 -->
+						<p class="txt_desc">입력하신 페이지 주소가 정확한지 다시 한번 확인해보시기 바랍니다<br />관련하여 문의 사항이 있으시면 언제든지 <a href="http://cs.daum.net/mail/form/173.html" class="link_cs" target="_blank">고객센터</a>로 문의해 주시기 바랍니다.</p>
+						<div class="wrap_btn">
+							<span class="inner"><a href="javascript:history.go(-1)" class="img_error btn_prev">이전</a><a href="http://www.tistory.com" class="img_error btn_home">TISTORY 첫화면</a></span>
+						</div>
+					</div>
+					<a href="http://cs.daum.net/faq/site/173.html" class="btn_cs">고객센터<img src="http://cfs.tistory.com/static/images/blank.gif" width="1" height="1" class="img_error ico_dot" alt="" /></a>
+				</div>
+				<div>
+					<address class="copyright">Copyright (c) <a href="http://info.daum.net/" class="link_daum">Daum Communications.</a> All rights reserved.</address>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+package websockets;
+
+import org.vertx.java.core.Handler;
+import org.vertx.java.core.buffer.Buffer;
+import org.vertx.java.core.http.HttpServerRequest;
+import org.vertx.java.core.http.ServerWebSocket;
+import org.vertx.java.deploy.Verticle;
+
+public class WebSocketsExample extends Verticle {
+
+	@Override
+	public void start() throws Exception {
+		vertx.createHttpServer().websocketHandler(new Handler<ServerWebSocket>() {
+			public void handle(final ServerWebSocket ws) {
+				if (ws.path.equals("/myapp")) {
+					ws.dataHandler(new Handler<Buffer>() {
+						public void handle(Buffer data) {
+							ws.writeTextFrame(data.toString()); // Echo it back
+						}
+					});
+				} else {
+					ws.reject();
+				}
+			}
+		}).requestHandler(new Handler<HttpServerRequest>() {
+			public void handle(HttpServerRequest req) {
+				if (req.path.equals("/"))
+					req.response.sendFile("ws.html"); // Serve the html
+			}
+		}).listen(8080);
+	}
+
+}

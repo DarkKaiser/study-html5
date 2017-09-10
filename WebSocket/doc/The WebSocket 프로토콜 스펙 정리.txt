@@ -1,0 +1,127 @@
+     개요
+          80/443 포트를 이용하는 HTTP 아래에서 동작하는 방식으로 설계했지만,
+          디자인 자체가 여기에 제한되어 있는 것은 아니다.
+          미래에는 비슷한 핸드쉐이크 방식으로 여러 포트에서 사용할 수도 있을 것이다.
+
+     프로토콜 개요
+          프로토콜은 핸드쉐이크와 데이터 전송으로 나뉜다.
+
+          클라이언트의 핸드쉐이크 
+
+             GET /chat HTTP/1.1
+             Host: server.example.com
+             Upgrade: websocket
+             Connection: Upgrade
+             Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+             Origin: http://example.com
+             Sec-WebSocket-Protocol: chat, superchat
+             Sec-WebSocket-Version: 13
+
+          서버의 핸드쉐이크
+
+             HTTP/1.1 101 Switching Protocols
+             Upgrade: websocket
+             Connection: Upgrade
+             Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+             Sec-WebSocket-Protocol: chatΩ
+
+          핸드쉐이크가 성공하면, 데이터 전송 파트가 시작된다.
+          이 후에는 클라이언트와 서버가 '메시지'라는 개념 단위로 데이터를 주고 받는다.
+          메시지는 한 개 또는 여러 개의 '프레임'으로 구성되어 있다. (네트워크 레이어의 프레임과는 별도이다)
+
+          프레임에는 몇 가지 타입이 있는데,
+          텍스트(UTF-8) 데이터, 바이너리 데이터, 컨트롤 프레임(프로토콜 레벨의 신호) 등이 있다.
+
+
+
+     핸드쉐이크 요청
+          HTTP 방식으로 요청을 보낸다.
+          헤더는 순서가 중요하지 않다.
+         
+          몇 가지 생소한 헤더에 대한 설명이다.
+
+               Sec-WebSocket-Protocol
+                    웹소켓 프로토콜 다음 레이어로 사용하는 애플리케이션 레벨의 프로토콜이 있다면 넘긴다.
+                    chat, XMPP 이런 것들일까?
+
+               Origin
+                    동일 근원 정책을 처리하기 위한 헤더
+
+               Sec-WebSocket-Key
+                    유효한 요청인지를 확인하기 위한 키. base64 로 인코딩한다.
+                    서버는 헤더로 전달받은 값에 유니크아이디를 더해서 SHA-1으로 해싱한 후, 다시 base64로 인코딩해 응답하게 된다.
+                    (이 값은 Sec-WebSocket-Accept 헤더로 응답온다) 
+                    예: key가 'dGhlIHNhbXBsZSBub25jZQ=='이고, 서버에서 생성한 유니크 아이디가 '258EAFA5-E914-47DA-95CA-C5AB0DC85B11' 라면,
+                    'dGhlIHNhbXBsZSBub25jZQ==258EAFA5-E914-47DA-95CA-C5AB0DC85B11'를 SHA-1로 해싱 후 base64로 인코딩 해,
+
+                    Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo= 
+
+                    와 같이 응답한다.
+          
+          서버는 응답으로 101 Switching Protocols 를 주며, Sec-WebSocket-Accept 헤더를 리턴한다.
+          클라이언트에서 인증하는 작업은 브라우저에서 처리하고 있는 건가?
+
+
+     디자인 철학
+          웹소켓 프로토콜은 최소 프레이밍 원칙으로 설계했다. (프레임 기준으로 통신하며, 유니코드 텍스트와 바이너리 프레임만 보낸다)
+          웹소켓은 TCP 레이어 위의 레이어이며, 아래 규칙을 지킨다.
+               - 동일근원 정책을 지킨다.
+               - 한 개의 포트와 IP에 여러 연결을 유지하기 위해 주소와 프로토콜 네이밍을 사용한다.
+               - TCP로 패킷을 보내는 것은 동일하지만 길이 제한이 없다.
+               - 핸드쉐이크 과정을 추가했고, 프록시나 다른 중개 서버에서도 제공할 수 있게 디자인됐다.
+
+     보안 모델
+          - 동일 근원 모델은 웹브라우저가 아닌 경우 의미가 없다. (브라우저일 경우, 브라우저 레벨에서 보낸다)
+          - 핸드쉐이크를 위한 Sec- 헤더는 자바스크립트로 설정할 수 없다. (정말인가?)
+               
+     TCP와 HTTP
+          웹소켓 프로토콜은 독립적인 TCP 기반의 프로토콜이다.
+          
+                    
+
+     핸드쉐이크
+          - 클라이언트는 한 개의 호스트와 포트 쌍에 여러 개의 커넥션을 맺을 수 있다.
+          이 경우 클라이언트에서 데이터를 잘 시리얼라이즈해야 한다.
+          - 한 개의 리모트 서버에 접속할 수 있는 클라이언트 수를 제한하고 있진 않지만, 서버에서 제한할 수 있다.
+                    
+     요청 헤더
+          - ws://example.com/chat 으로 접속하려 한다면, GET /chat HTTP/1.1 형태여야 한다.
+          - Host 헤더에 호스트와 포트 정보가 있어야 한다.
+          - Upgrade 헤더에 "websocket" 키워드가 존재해야 한다.
+          - Connection 헤더에 "Upgrade" 토큰이 포힘되어 있어야 한다.
+          - Sec-WebSocket-Key 헤더에 랜덤한 16 바이트 문자열이 base64로 인코딩 되어 있어야 한다.
+          - Origin 헤더에 요청 근원지가 있어야 한다. 브라우저가 아니라면 의미에 맞는 문자(askii)가 있어야 한다.
+          - Sec-WebSocket-Version 헤더에는 반드시 13이 있어야 한다.
+          - Sec-WebSocket-Protocol 은 필요할 때만.
+
+     이렇게 요청을 보낸 후에, 클라이언트는 서버 데이터를 검증해야 한다.
+          1. 101 응답을 확인하고,
+          2. Sec-WebSocket-Key 로 받은 문자에 매직넘버 "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"를 붙인다.
+          3. 붙인 값을 SHA-1으로 해싱한 후, base64로 인코딩한 값이,
+          4. 서버에서 응답한 Sec-WebSocket-Accept 와 동일한지 비교한다.
+          5. 동일하면 커넥! 
+          WebSocket client 와 server 의 핸드쉐이크 방법에 대해 블로깅해보자.
+
+     서버사이드
+          서버는 커넥션 관리를 다른 에이전트로 떠넘길 수 있다.
+          예를 들어, 핸드쉐이크를 검사해서 연결시킨 후, 통신 연결은 다른 서버로 넘기는 것과 같이 말이다.
+
+     아래와 같은 데이터가 왔다면. (http://tools.ietf.org/html/rfc6455#section-5.7) 
+          0x81 0x05 0x48 0x65 0x6c 0x6c 0x6f
+          
+          위 메시지는 아래와 같이 풀 수 있다.
+          1000 0001 0000 0101 (0x48 부턴 Hello를 유니코드로 변환한 것)
+  
+          Base Framing Protocol(http://tools.ietf.org/html/rfc6455#section-5.2)에 의해서,
+          1000: 첫 메시지이고,
+          0001: opcode가 1, 즉 텍스트를 의미한다.
+          0101: 첫번째 비트에 따라, 마스크가 되어 있지 않고, 데이터의 길이는 5바이트이다.
+
+     마스크가 적용돼서 아래와 같이 왔다면,
+          0x81 0x85 0x37 0xfa 0x21 0x3d 0x7f 0x9f 0x4d 0x51 0x58
+
+          위 메시지는 아래와 같이 풀 수 있다.
+          1000 0001: 첫 번째 메시지이고, 텍스트이다.
+          1000 0101: 마스크가 적용되어 있고, 5바이트 크기이다.
+          0011 0111 1111 1010 0010 0001 0011 1101: (0x37 0xfa 0x21 0x3d) 4바이트 형태의 마스크
+          (마스크가 적용된 알고리즘은 http://tools.ietf.org/html/rfc6455#section-5.3 를 참고한다.) 
